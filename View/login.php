@@ -14,7 +14,6 @@ if (isset($_GET['etat'])) {
             break;
     }
 }
-require_once "./responsable/nav.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -178,13 +177,13 @@ require_once "./responsable/nav.php";
         if ($login === "admin" && md5($password) === "0192023a7bbd73250516f069df18b500") {
             $_SESSION['login'] = $login;
             $_SESSION['pw'] = $password;
-            header("Location: admin_home.php");
+            header("Location: responsable/indexR.php");
             exit;
         }
         if ($login === "user" && md5($password) === "6ad14ba9986e3615423dfca256d04e3f") {
             $_SESSION['login'] = $login;
             $_SESSION['pw'] = $password;
-            header("Location: user_home.php");
+            header("Location: UO/indexUO.php");
             exit;
         }
         echo "<script>alert('Login et/ou mot de passe sont incorrects');</script>";
