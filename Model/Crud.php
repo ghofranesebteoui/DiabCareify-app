@@ -40,46 +40,26 @@ class Crud
     // Fonctionnalités spécifiques
 
     // Ajouter un UO
-    public function ajouterUO($nom)
+    public function ajouterUO($nom, $email)
     {
-        $sql = "INSERT INTO unite_operationnelle (nom) VALUES ('$nom')";
+        $sql = "INSERT INTO unite_operationnelle (nomUO,emailUO) VALUES ('$nom','$email')";
         $this->executeQuery($sql);
     }
 
     // Supprimer un UO
     public function supprimerUO($id)
     {
-        $sql = "DELETE FROM unite_operationnelle WHERE id = $id";
+        $sql = "DELETE FROM unite_operationnelle WHERE idUO = $id";
         $this->executeQuery($sql);
     }
 
     // Configurer un indicateur
     public function configurerIndicateur($formule, $objectif)
     {
-        $sql = "UPDATE indicateur SET formule = '$formule', objectif = '$objectif' WHERE id = 1";
+        $sql = "UPDATE indicateur SET formuleCalcul = '$formule', objectif = '$objectif' WHERE idIndicateur = 1";
         $this->executeQuery($sql);
     }
 
-    // Partager un indicateur
-    public function partagerIndicateur()
-    {
-        $sql = "UPDATE indicateur SET partage = 1 WHERE id = 1";
-        $this->executeQuery($sql);
-    }
-
-    // Ajouter un programme
-    public function ajouterProgramme($nom)
-    {
-        $sql = "INSERT INTO programme (nom) VALUES ('$nom')";
-        $this->executeQuery($sql);
-    }
-
-    // Récupérer les données des UOs
-    public function obtenirDonneesUOs()
-    {
-        $sql = "SELECT * FROM uo_donnees";
-        return $this->executeSelect($sql);
-    }
 
     // Suivi des UOs
     public function obtenirSuiviUOs()
@@ -91,10 +71,22 @@ class Crud
         return $this->executeSelect($sql);
     }
 
-    // Récupérer les programmes
-    public function obtenirProgrammes()
+
+    public function getResultatsConsolides()
     {
-        $sql = "SELECT * FROM programme";
+        $sql = "
+        SELECT 
+            u.nomUO, 
+            (SUM(v.nbComplications) / SUM(v.nbChroniques) * 100) AS valeur
+        FROM 
+            unite_operationnelle u
+        JOIN 
+            valeurs_sources v 
+        ON 
+            u.idUO = v.idUO
+        GROUP BY 
+            u.idUO
+    ";
         return $this->executeSelect($sql);
     }
 }

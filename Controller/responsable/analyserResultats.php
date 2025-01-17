@@ -1,16 +1,16 @@
 <?php
 require_once '../../Model/Crud.php';
 
-class AnalyserResultatsController
+class AnalyserResultats
 {
     public function afficherResultats()
     {
         $crud = new Crud();
-        $sql = "SELECT * FROM uo_donnees";
-        $resultats = $crud->executeSelect($sql);
-        include '../../View/Responsable/analyserResultats.php';
+        $sql = "SELECT * FROM unite_operationnelle";
+        $resultats = $crud->getResultatsConsolides();
+        include '../../View/responsable/analyserResultats.php';
     }
 }
 
-$controller = new AnalyserResultatsController();
+$controller = new AnalyserResultats();
 $controller->afficherResultats();

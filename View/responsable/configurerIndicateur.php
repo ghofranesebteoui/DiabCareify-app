@@ -7,7 +7,7 @@
 
 <body>
     <h2>Configurer Indicateur</h2>
-    <form method="POST" action="../../Controller/Responsable/configurerIndicateur.php">
+    <form method="POST" action="../../Controller/responsable/configurerIndicateur.php">
         <label for="formule">Formule :</label><br>
         <textarea name="formule" id="formule" rows="3" required></textarea><br><br>
 

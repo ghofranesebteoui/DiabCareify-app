@@ -1,16 +1,17 @@
 <?php
 require_once '../../Model/Crud.php';
 
-class SuiviUOsController
+class SuiviUOs
 {
     public function afficherSuivi()
     {
         $crud = new Crud();
-        $sql = "SELECT * FROM uo_suivi";
-        $suivi = $crud->executeSelect($sql);
-        include '../../View/Responsable/suiviUOs.php';
+
+        $suiviUOs = $crud->obtenirSuiviUOs();
+
+        include '../../View/responsable/suiviUOs.php';
     }
 }
 
-$controller = new SuiviUOsController();
+$controller = new SuiviUOs();
 $controller->afficherSuivi();

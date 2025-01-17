@@ -1,24 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
-    <title>Suivi des UOs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyser Résultats</title>
+    <style>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Suivi des UOs</h2>
-    <table border="1">
-        <tr>
-            <th>UO</th>
-            <th>Statut</th>
-        </tr>
-        <?php foreach ($suivi as $uo) { ?>
+    <h2>Suivi des Résultats des UOs</h2>
+
+    <?php
+    require_once '../../Model/Crud.php';
+
+    $crud = new Crud();
+
+    $suiviUOs = $crud->obtenirSuiviUOs();
+
+    if (!empty($suiviUOs)) {
+    ?>
+        <table>
             <tr>
-                <td><?= $uo['uo_nom'] ?></td>
-                <td><?= $uo['statut'] ?></td>
+                <th>Unité Opérationnelle</th>
+                <th>Statut des Données</th>
             </tr>
-        <?php } ?>
-    </table>
+            <?php foreach ($suiviUOs as $suivi) { ?>
+                <tr>
+                    <td><?= htmlspecialchars($suivi['nomUO']) ?></td>
+                    <td><?= ($suivi['statut'] === 'Non saisi') ? 'Aucune donnée' : 'Données soumises' ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+    <?php
+    } else {
+    ?>
+        <p style="text-align: center;">Aucune Unité Opérationnelle disponible.</p>
+    <?php
+    }
+    ?>
 </body>
 
 </html>

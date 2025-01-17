@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiabCareify</title>
-    <link rel="icon" href="img4.png" type="image/png">
+    <link rel="icon" href="../images/img4.png" type="image/png">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -25,11 +25,13 @@
             height: 100%;
         }
 
+        /* main section */
+
 
         .main {
             width: 100%;
             height: 100vh;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('bgImage.png') center/cover no-repeat;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bgImage.png') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -68,6 +70,8 @@
             color: #000;
         }
 
+        /* navbar section */
+
         .navbar-brand img {
             width: 40px;
             height: 40px;
@@ -76,10 +80,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .about_section {
-            padding: 50px 0;
-        }
-
+        /* img-box section*/
         .img-box img {
             width: 100%;
             height: auto;
@@ -87,8 +88,14 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* detail-box section */
         .detail-box {
             text-align: left;
+        }
+
+        /* about section */
+        .about_section {
+            padding: 50px 0;
         }
 
         .about-heading {
@@ -124,7 +131,7 @@
         .contact_section {
             width: 100%;
             height: 100vh;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('form.png') center/cover no-repeat;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/form.png') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -235,9 +242,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            /* Utiliser 'contain' pour afficher l'image complète sans la couper */
             object-position: center center;
-            /* Centrer l'image */
         }
 
         .contact_bg_box::before {
@@ -359,7 +364,6 @@
         /* footer section*/
         .footer_section {
             background-color: #2c3e50;
-            /* Dark blue for a classy feel */
             color: #ffffff;
             padding: 80px 0 40px 0;
             text-align: center;
@@ -405,7 +409,6 @@
 
         .footer_section .footer_contact .contact_link_box a:hover {
             color: #3498db;
-            /* Light blue on hover for better contrast */
         }
 
         .footer_section .footer-logo {
@@ -430,7 +433,6 @@
             justify-content: center;
             align-items: center;
             color: #2c3e50;
-            /* Default dark color */
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -443,7 +445,6 @@
         .footer_section .footer_social a:hover {
             color: #ffffff;
             background-color: #3498db;
-            /* Highlight social icons on hover */
         }
 
         .footer_section .footer-info {
@@ -490,11 +491,14 @@
 
         .footer-col {
             margin-bottom: 20px;
-            /* Ajuster la marge */
         }
 
         .footer_section .footer_content {
             padding: 10px;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -519,19 +523,19 @@
                     <!-- Left Boxes -->
                     <div class="detail_container">
                         <div class="detail-box">
-                            <img src="analyse.jpg" alt="Analyse des Données" class="img-fluid mb-3" style="width: 80px; height: 80px;border-radius: 10px;
+                            <img src="../images/analyse.jpg" alt="Analyse des Données" class="img-fluid mb-3" style="width: 80px; height: 80px;border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                             <h5>Analyse des Données</h5>
                             <p>Obtenez des statistiques précises sur le taux de diabète par unité opérationnelle à travers la Tunisie.</p>
                         </div>
                         <div class="detail-box">
-                            <img src="prevention.jpg" alt="Prévention Ciblée" class="img-fluid mb-3" style="width: 80px; height: 80px;border-radius: 10px;
+                            <img src="../images/prevention.jpg" alt="Prévention Ciblée" class="img-fluid mb-3" style="width: 80px; height: 80px;border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                             <h5>Prévention Ciblée</h5>
                             <p>Aidez les unités opérationnelles à planifier des actions efficaces pour réduire le taux de diabète.</p>
                         </div>
                         <div class="detail-box">
-                            <img src="inter.png" alt="Visualisation Intuitive" class="img-fluid mb-3" style="width: 80px; height: 80px;border-radius: 10px;
+                            <img src="../images/inter.png" alt="Visualisation Intuitive" class="img-fluid mb-3" style="width: 80px; height: 80px;border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                             <h5>Visualisation Intuitive</h5>
                             <p>Interprétez facilement les données grâce à des graphiques clairs et interactifs.</p>
@@ -541,19 +545,19 @@
                 <div class="col-md-6 col-lg-5 ml-auto">
                     <!-- Right Image -->
                     <div class="img-box">
-                        <img src="diabete.png" alt="" style="width: 100%; height: calc(100% - 20px); object-fit: cover; border-radius: 10px;">
+                        <img src="../images/diabete.png" alt="" style="width: 100%; height: calc(100% - 20px); object-fit: cover; border-radius: 10px;">
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- about section-->
-    <section class="about_section layout_padding-bottom">
+    <section class="about_section layout_padding-bottom" id="about-section">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="img-box">
-                        <img src="about.png" alt="" class="img-fluid">
+                        <img src="../images/about.png" alt="" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -626,7 +630,7 @@
                     <div class="carousel-item active">
                         <div class="box">
                             <div class="img-box">
-                                <img src="1.png" alt="">
+                                <img src="../images/1.png" alt="">
                             </div>
                             <div class="detail-box">
                                 <h4>UO Ben Arous</h4>
@@ -637,7 +641,7 @@
                     <div class="carousel-item">
                         <div class="box">
                             <div class="img-box">
-                                <img src="2.png" alt="">
+                                <img src="../images/2.png" alt="">
                             </div>
                             <div class="detail-box">
                                 <h4>UO Séliana</h4>
@@ -648,7 +652,7 @@
                     <div class="carousel-item">
                         <div class="box">
                             <div class="img-box">
-                                <img src="4.png" alt="">
+                                <img src="../images/4.png" alt="">
                             </div>
                             <div class="detail-box">
                                 <h4>UO Zaghouan</h4>
@@ -659,7 +663,7 @@
                     <div class="carousel-item">
                         <div class="box">
                             <div class="img-box">
-                                <img src="3.png" alt="">
+                                <img src="../images/3.png" alt="">
                             </div>
                             <div class="detail-box">
                                 <h4>UO Bizerte</h4>
@@ -681,52 +685,8 @@
             </div>
         </div>
     </section>
-    <footer class="footer_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 footer-col">
-                    <!-- Contenu principal à gauche -->
-                    <div class="footer_content">
-                        <h4>Contact</h4>
-                        <div class="contact_link_box">
-                            <a href=""><i class="fa fa-map-marker" aria-hidden="true"></i><span>Lieu</span></a><br>
-                            <a href=""><i class="fa fa-phone" aria-hidden="true"></i><span>Appeler +216 12345678</span></a><br>
-                            <a href=""><i class="fa fa-envelope" aria-hidden="true"></i><span>diabcareify@gmail.com</span></a>
-                        </div>
-                    </div>
-                </div>
+    <?php require_once "footer.php" ?>
 
-                <div class="col-md-4 footer-col">
-                    <!-- Contenu principal au centre -->
-                    <div class="footer_content">
-                        <a href="" class="footer-logo">DiabCareify</a>
-                        <p>Atteindre à....</p>
-                        <div class="footer_social">
-                            <a href=""><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-                            <a href=""><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
-                            <a href=""><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 footer-col">
-                    <!-- Contenu principal à droite -->
-                    <div class="footer_content">
-                        <h4>Liens utiles</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">À propos de nous</a></li>
-                            <li><a href="#">Politique de confidentialité</a></li>
-                            <li><a href="#">Conditions d'utilisation</a></li>
-                            <li><a href="#">Support</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer_info">
-                        <p>&copy; <span id="displayYear"></span> Tous droits réservés par <a href="#">DiabCareify</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 
 </body>
 
