@@ -1,4 +1,6 @@
 <?php
+ob_start(); // Démarre la mise en mémoire tampon
+
 session_start();
 if (isset($_GET['etat'])) {
     $etat = $_GET['etat'];
@@ -22,10 +24,12 @@ if (isset($_GET['etat'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../images/img4.png" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Login</title>
     <style>
         body {
@@ -38,6 +42,14 @@ if (isset($_GET['etat'])) {
             margin-right: 10px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .fixed-top {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+            /* Pour s'assurer qu'elle est au-dessus d'autres éléments */
         }
 
         .bg-primary {
@@ -214,7 +226,7 @@ if (isset($_GET['etat'])) {
 </head>
 
 <body>
-    <?php require_once "navLogin.php" ?>
+    <?php require_once "navLogin.php"; ?>
 
     <section class="vh-100">
         <div class="container h-custom d-flex align-items-center justify-content-center">
@@ -274,9 +286,10 @@ if (isset($_GET['etat'])) {
         </div>
     </section>
 
-    <?php require_once "footer.php";
+    <?php require_once "footer.php"; // Assurez-vous qu'il n'y a pas de sortie avant cette ligne 
+    ?>
 
-
+    <?php
     if (isset($_POST['ok'])) {
         $login = htmlspecialchars($_POST['login']);
         $password = htmlspecialchars($_POST['pw']);
@@ -289,11 +302,12 @@ if (isset($_GET['etat'])) {
         if ($login === "user" && md5($password) === "6ad14ba9986e3615423dfca256d04e3f") {
             $_SESSION['login'] = $login;
             $_SESSION['pw'] = $password;
-            header("Location: UO/indexUO.php");
+            header("Location: ../UO/indexUO.php");
             exit;
         }
         echo "<script>alert('Login et/ou mot de passe sont incorrects');</script>";
     }
+    ob_end_flush(); // Libère la mémoire tampon et envoie tout le contenu
     ?>
 </body>
 

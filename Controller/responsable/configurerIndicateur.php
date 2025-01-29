@@ -1,26 +1,24 @@
 <?php
-require_once '../../Model/Crud.php';
+require_once '../../Model/connexion.php';
 
-class ConfigurerIndicateur
-{
-    public function afficherFormulaire()
-    {
-        include '../../View/responsable/configurerIndicateur.php';
-    }
+$connexion = new Connexion();
+$pdo = $connexion->getConnexion();
 
-    public function configurerIndicateur($formule, $objectif)
-    {
-        $crud = new Crud();
-        $sql = "UPDATE indicateur SET formuleCalcul = '$formule', objectif = '$objectif' WHERE idIndicateur = 1";
-        $crud->executeQuery($sql);
-        header('Location: success.php?message=Indicateur configuré avec succès');
-    }
-}
+$sql = "SELECT * FROM indicateur WHERE idIndicateur = 1";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $controller = new ConfigurerIndicateur();
-    $controller->configurerIndicateur($_POST['formule'], $_POST['objectif']);
+if ($stmt->rowCount() > 0) {
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $id = $row['idIndicateur'];
+    $nom = $row['nomIndicateur'];
+    $objectif = $row['objectif'];
+    $formule = $row['formuleCalcul'];
+    $date = $row['dateActualisation'];
 } else {
-    $controller = new ConfigurerIndicateur();
-    $controller->afficherFormulaire();
+    $id = "Aucun";
+    $nom = "Aucun nom disponible";
+    $objectif = "Aucun objectif disponible";
+    $formule = "Aucune formule disponible";
+    $date = "Aucune date disponible";
 }

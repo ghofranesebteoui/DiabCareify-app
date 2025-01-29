@@ -1,74 +1,71 @@
 <?php
+require_once "connexion.php";
+require_once "suiviUOs.php";
+require_once "valeurSource.php";
+require_once "indicateur.php";
+require_once "UO.php";
+
 class Crud
 {
     private $pdo;
 
     public function __construct()
     {
-        $dsn = "mysql:host=localhost;dbname=e_commerce";
-        $user = "root";
-        $pw = "";
-        try {
-            $this->pdo = new PDO($dsn, $user, $pw);
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die("Erreur de connexion à la base de données : " . $e->getMessage());
-        }
+        $connexion = new Connexion();
+        $this->pdo = $connexion->getConnexion();
     }
 
-    // Méthode pour exécuter une requête d'insertion, de mise à jour ou de suppression
-    public function executeQuery($sql)
-    {
-        try {
-            $this->pdo->query($sql);
-        } catch (PDOException $e) {
-            die("Erreur lors de l'exécution de la requête : " . $e->getMessage());
-        }
-    }
-
-    // Méthode pour exécuter une requête de sélection
-    public function executeSelect($sql)
-    {
-        try {
-            $result = $this->pdo->query($sql);
-            return $result->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            die("Erreur lors de la récupération des données : " . $e->getMessage());
-        }
-    }
-
-    // Fonctionnalités spécifiques
 
     // Ajouter un UO
-    public function ajouterUO($nom, $email)
+    public function ajouterUO($id, $nom, $email)
     {
-        $sql = "INSERT INTO unite_operationnelle (nomUO,emailUO) VALUES ('$nom','$email')";
-        $this->executeQuery($sql);
+        $uo = new UO($id, $nom, $email);
+        $nom = $uo->getNomUO();
+        $email = $uo->getEmailUO();
+        $sql = "INSERT INTO unite_operationnelle (idUO,nomUO,emailUO) 
+        VALUES (id,'$nom','$email')";
+        $res = $this->pdo->exec($sql);
+        return $res;
     }
 
     // Supprimer un UO
     public function supprimerUO($id)
     {
         $sql = "DELETE FROM unite_operationnelle WHERE idUO = $id";
-        $this->executeQuery($sql);
+        $res = $this->pdo->exec($sql);
+        return $res;
     }
 
-    // Configurer un indicateur
-    public function configurerIndicateur($formule, $objectif)
+    //Ajout des valeurs
+    public function ajouterValeur($idValeur, $idUO, $nbChroniques, $nbComplications, $dateSaisie, $tempsSaisie, $statutSaisie)
     {
-        $sql = "UPDATE indicateur SET formuleCalcul = '$formule', objectif = '$objectif' WHERE idIndicateur = 1";
-        $this->executeQuery($sql);
+        $val = new ValeursSources($idValeur, $idUO, $nbChroniques, $nbComplications, $dateSaisie, $tempsSaisie, $statutSaisie);
+        $idValeur = $val->getIdValeur();
+        $idUO = $val->getIdUO();
+        $nbChroniques = $val->getNbChroniques();
+        $nbComplications = $val->getNbComplications();
+        $dateSaisie = $val->getDateSaisie();
+        $tempsSaisie = $val->getTempsSaisie();
+        $statutSaisie = $val->getStatutSaisie();
+        $sql = "INSERT INTO valeur_source (idValeur, idUO, nbChroniques, nbComplications, dateSaisie, tempsSaisie, statutSaisie)
+                VALUES ($idValeur, $idUO, $nbChroniques, $nbComplications, '$dateSaisie', '$tempsSaisie', '$statutSaisie')";
+        $res = $this->pdo->exec($sql);
+        return $res;
     }
 
 
     // Suivi des UOs
-    public function obtenirSuiviUOs()
+    public function obtenirSuiviUOsAvecStatutSaisie()
     {
-        $sql = "SELECT uo.nom AS uo_nom, 
-                       IFNULL(uo_donnees.id, 'Non saisi') AS statut 
-                FROM unite_operationnelle uo 
-                LEFT JOIN uo_donnees ON uo.id = uo_donnees.uo_id";
-        return $this->executeSelect($sql);
+        $query = "SELECT uo.id AS idUO, uo.uo_nom, vs.statut_saisie, uo.date_debut, uo.date_fin, uo.statut
+                  FROM suivi_uos uo
+                  LEFT JOIN valeurs_sources vs ON uo.id = vs.idUO
+                  WHERE uo.idIndicateur = 1
+                  ORDER BY uo.date_debut";
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
@@ -87,6 +84,7 @@ class Crud
         GROUP BY 
             u.idUO
     ";
-        return $this->executeSelect($sql);
+        $res = $this->pdo->query($sql);
+        return $res->fetchAll(PDO::FETCH_NUM);
     }
 }

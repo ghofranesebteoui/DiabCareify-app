@@ -1,40 +1,34 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<nav class="navbar fixed-top navbar-expand-lg bg-light" data-bs-theme="light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="./indexUO.php"><i class="fa-regular fa-user"></i> Espace UO</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="../includes/index.php"><img src="../images/img4.png" alt="" class="brand-logo"> DiabCareify</a>&nbsp;
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarColor01">
+        <div class="collapse navbar-collapse" id="navbarColor03">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="./indexUO.php"><i class="fa-solid fa-house"></i> Accueil
+                    <a class="nav-link active" href="indexUO.php"><i class="fa-solid fa-house"></i>&nbsp;Acceuil
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-bars"></i> Fonctionnalités</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="../../view/uniteOperationnelle/saisirValeur.php">Saisir des Données</a>
-                        <a class="dropdown-item" href="../../view/uniteOperationnelle/consulterEtat.php">Consulter l'état</a>
-                        <a class="dropdown-item" href="../../view/uniteOperationnelle/detailIndicateur.php">Détails de l' Indicateur</a>
-                        <a class="dropdown-item" href="../../view/uniteOperationnelle/afficherResultats.php">Afficher les Résultats</a>
-                    </div>
-                </li>
-
-
-            </ul>
-            <ul class="navbar-nav me-left">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-user-plus"></i>Créer un compte</a>
+                    <a class="nav-link" href="afficherResultats.php"><i class="fa-solid fa-chart-line"></i>&nbsp;Afficher Résultats</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-sign-in"></i>Connexion</a>
+                    <a class="nav-link" href="consulterEtat.php"><i class="fa-solid fa-eye"></i>&nbsp;Consulter État</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-sign-out"></i>Déconnexion</a>
+                    <a class="nav-link" href="detailIndicateur.php"><i class="fa-solid fa-info-circle"></i>&nbsp;Détails Indicateur</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="saisirValeur.php"><i class="fa-solid fa-pencil-alt"></i>&nbsp;Saisir Valeur</a>
                 </li>
             </ul>
-
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../includes/logout.php"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;Déconnexion</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
